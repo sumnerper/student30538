@@ -245,8 +245,11 @@ HTML **attributes** always have the following structure:
 
 1. Inspect the HTML code on the [Harris Specialization in Data Analytics (link)](https://harris.uchicago.edu/academics/design-your-path/specializations/specialization-data-analytics) page
 2. What is the tag associated with the text that starts with: "Students in the Master of Science in Computational Analysis and Public Policy..."? 
+<strong> which is nested inside of <p>
 3. What are examples of other content associated with the same tag?
+"Still have questions?"
 4. Look at attributes for tags with links. Some of them do not appear to be "full" links. Can you explain why?
+href. Not a full link in every case because all uchicago.edu so no need. *Might be useful in the pset* 
 
 ## HTML to web scraping
 - Webscraping steps:
