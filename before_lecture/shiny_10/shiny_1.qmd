@@ -215,7 +215,9 @@ Plan of action: I will show this step-by-step and then you will try it.
 ::: {.column width="50%"}
 **Windows**
 
-![](pictures/directory_2_pc.png){ width=40% fig-align="center"}
+![](pictures/directory_2_pc.png){ width=100% fig-align="center"}
+
+"Copy as Path"
 
 Source: How-to Geek
 :::
@@ -232,19 +234,6 @@ $ cd <dir_for_shiny_app>
 
 \normalsize
 
-## Create Your Shiny App
-- Choose "Basic app" as the template
-    - In a future lecture we will explore the other templates
-
-\vspace{2ex}
-
-![](pictures/directory_4.png){ width=60% fig-align="center"}
-
-. . .
-
-- Don't use Shiny Express
-
-![](pictures/directory_5.png){ width=60% fig-align="center"}
 
 ## Create Your Shiny App
 ```{}
@@ -260,6 +249,21 @@ $ shiny create
 - You should see a new folder titled `basic-app` in your directory 
 
 ![](pictures/directory_7.png){ width=65% fig-align="center"}
+
+
+## Create Your Shiny App
+- Choose "Basic app" as the template
+    - In a future lecture we will explore the other templates
+
+\vspace{2ex}
+
+![](pictures/directory_4.png){ width=60% fig-align="center"}
+
+. . .
+
+- Don't use Shiny Express
+
+![](pictures/directory_5.png){ width=60% fig-align="center"}
 
 ## Your New Shiny App 
 
@@ -556,15 +560,16 @@ Steps
 
 1. Install package to show graphs in Altair
 1. Server side code to compute a normally-distributed sample with mean `mu`
-2. UI side code to display the plot
+2. UI side code to ask for `mu` and to display the plot
 
 
 ## Jupyter Widgets 
 - Shiny supports Jupyter Widgets via `shinywidgets` package
+    - Students using anaconda needed to instead use a different  `anywidget`
 - We'll focus on using `shinywidgets` to incorporate `altair` plots, but it also supports many other interactive widgets from Jupyter Notebooks: `plotly`, `pydeck`, `bokeh`, etc.
 
 ```{}
-$ pip install jupyterwidgets
+$ pip install shinywidgets
 ```
 
 ## Altair Jupyter Widget
@@ -589,7 +594,6 @@ def server(input, output, session):
     @render_altair
     def my_hist():
         sample = np.random.normal(input.mu(), 20, 100)
-        print(sample)
         df = pd.DataFrame({'sample': sample})
         return(
             alt.Chart(df).mark_bar().encode(
@@ -602,7 +606,7 @@ def server(input, output, session):
 - `sample = np.random.normal(input.n(), 20, 100)` is `numpy` code that defines a normally-distributed random sample:
     - mean: `input.n()`
     - standard deviation: `20`
-    - number of observations: `1000`
+    - number of observations: `100`
 
 ## Build Your Second Shiny App 
 - Then moving on to the UI side:
@@ -742,7 +746,6 @@ app_ui = ui.page_fluid(
 @render.text
 def my_hist():
         sample = np.random.normal(input.mu(), 20, 100)
-        print(sample)
         df = pd.DataFrame({'sample': sample})
         return(
             alt.Chart(df).mark_bar().encode(
@@ -811,7 +814,6 @@ Steps to a dashboard in Shiny
 \vspace{-1ex}
 
 5. Display it in the UI Send output back
-are deployed *from Terminal*, rather than directly running the Python code
 
 \vspace{-1ex}
 
